@@ -1,0 +1,112 @@
+.room {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0px 0px 25px rgba(208, 208, 208, 0.25);
+}
+
+.room__img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.room__desc {
+    border: 1px solid #E1E1E1;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 17px;
+    @media (max-width: 1200px) {
+        padding: 25px 10px;
+    }
+}
+
+.room__name {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+
+.room__stat {
+    margin-bottom: 15px;
+}
+
+.room__price {
+    margin-bottom: 25px;
+    span {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        padding-left: 4px;
+    }
+}
+
+.room__btn {
+    color: #fff;
+    padding-top: 17px;
+    padding-bottom: 19px;
+    padding-right: 30px;
+    width: 100%;
+    background-color: $clrTheme1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transition: .1s ease-out;
+    &::before {
+        content: '';
+        width: 34px;
+        height: 34px;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+        background: url(../img/icons/paw.png) 7px center no-repeat #fff;
+        border-radius: 50%;
+    }
+    &:hover {
+        background-color: darken($clrTheme1, 10%);
+        transition: .2s ease-out;
+        &::before {
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+    }
+}
+
+.room__boons {
+    margin-bottom: 15px;
+    span {
+        padding-right: 4px;
+    }
+}
+
+.room__boon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../img/sprites/css_sprites.png);
+    background-position: -14px -0;
+    margin: -4px 0;
+    & + & {
+        margin-left: 8px;
+        @media (max-width: 1200px) {
+            margin-left: 4px;
+        }
+    }
+    &_bed {
+        background-position: -30px 2px;
+    }
+
+    &_fang {
+        width: 14px;
+        background-position: -0 -0;
+    }
+
+    &_toy {
+        background-position: -46px -0;
+    }
+
+    &_roof {
+        background-position: -62px -0;
+    }
+}

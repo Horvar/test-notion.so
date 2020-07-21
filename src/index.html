@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>notion.so - test</title>
+    <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body class="body" id="top">
+    <header class="header">
+        <div class="header__container container">
+            <a href="/" class="header__logo"><img src="img/logo.png" alt=""></a>
+            <nav class="header__nav nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#">Почему мы?</a></li>
+                    <li class="nav__item"><a href="#">Номера</a></li>
+                    <li class="nav__item"><a href="#">Отзывы</a></li>
+                    <li class="nav__item"><a href="#">Как нас найти</a></li>
+                </ul>
+            </nav>
+
+            <div class="header__hamburger hamburger" onclick="openMobileMenu()">
+                <div class="hamburger__line"></div>
+                <div class="hamburger__line"></div>
+                <div class="hamburger__line"></div>
+            </div>
+        </div>
+        <div class="header__mobile-menu mobile-menu">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="#">Почему мы?</a></li>
+                <li class="nav__item"><a href="#">Номера</a></li>
+                <li class="nav__item"><a href="#">Отзывы</a></li>
+                <li class="nav__item"><a href="#">Как нас найти</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="main__section rent">
+            <div class="rent__container container">
+                <h1 class="rent__title h1">Наши номера</h1>
+                <div class="rent__content">
+                    <!-- filters -->
+                    <div class="rent__filter filter">
+                        <div class="filter__container">
+                            <p class="filter__title">Цена за сутки, ₽</p>
+                            <div class="filter__range">
+                                <div class="filter__range-wrapper">
+                                    <label for="rangeFrom">от</label>
+                                    <input type="text" id="rangeFrom">
+                                </div>
+                                <div class="filter__range-wrapper">
+                                    <label for="rangeTo">до</label>
+                                    <input type="text" id="rangeTo">
+                                </div>
+                            </div>
+                            <div class="filter__error">Введено неверное значение</div>
+                        </div>
+                        <div class="filter__container">
+                            <p class="filter__title">Площадь</p>
+                            <div class="filter__check" id="sizes">
+                                <!-- <label><input type="checkbox"><span>0,63</span> м<sup>2</sup></label>
+                                <label><input type="checkbox"><span>0,90</span> м<sup>2</sup></label>
+                                <label><input type="checkbox"><span>1,13</span> м<sup>2</sup></label>
+                                <label><input type="checkbox"><span>1,56</span> м<sup>2</sup></label>
+                                <label><input type="checkbox"><span>2,56</span> м<sup>2</sup></label> -->
+                            </div>
+                        </div>
+                        <div class="filter__container">
+                            <p class="filter__title">Оснащение номера</p>
+                            <div class="filter__check" id="boons">
+                                <label><input type="checkbox" name="clear"><span>Пустой номер</span></label>
+                                <label><input type="checkbox" name="bed"><span>Лежак</span></label>
+                                <label><input type="checkbox" name="fang"><span>Когтеточка</span></label>
+                                <label><input type="checkbox" name="toy"><span>Игровой-комплекс</span></label>
+                                <label><input type="checkbox" name="roof"><span>Домик</span></label>
+                            </div>
+                        </div>
+                        <button class="filter__submit button" onclick="filterSubmit()">Применить</button>
+                        <button class="filter__clear button" onclick="filterClear()">Сбросить фильтр</button>
+                    </div>
+                    <!-- rent -->
+                    <ul class="rent__rooms">
+                        <div class="rent__sort sort" onclick="openSort()">
+                            <p class="sort__current">&#8595; По цене</p>
+                            <ul class="sort__list" onclick="closeSort()">
+                                <li class="sort__item" onclick="sortSizeBot()" id="sortSizeTop">&#8593; По площади</li>
+                                <li class="sort__item" onclick="sortSizeTop()" id="sortSizeBot">&#8595; По площади</li>
+                                <li class="sort__item" onclick="sortPriceBot()" id="sortPriceTop">&#8593; По цене</li>
+                                <li class="sort__item sort__item_current" onclick="sortPriceTop()" id="sortPriceBot">&#8595; По цене</li>
+                            </ul>
+                        </div>
+                        <div class="rent__list" id="id01">
+                            <!-- 1 -->
+                            <li class="rent__item rent__item_shown">
+                                <div class="room" bed="0" fang="0" toy="0" roof="0">
+                                    <img src="img/rooms/preview-room-1.jpg" alt="" class="room__img">
+                                    <div class="room__desc">
+                                        <p class="room__name">Эконом</p>
+                                        <div class="room__stat">
+                                            <p>Размеры (ШхГхВ) - <span>90х70х180</span>см</p>
+                                        </div>
+                                        <div class="room__stat">
+                                            <p>Площадь - <span class="room__stat-size">0,63</span> м<sup>2</sup></p>
+                                        </div>
+                                        <div class="room__boons">
+                                            <span>Оснащение номера</span>
+                                        </div>
+                                        <div class="room__price">
+                                            <p>Цена за сутки: <span class="room__price-value">100</span><span>₽</span></p>
+                                        </div>
+                                        <button class="room__btn button">Забронировать</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 2 -->
+                            <li class="rent__item rent__item_shown">
+                                <div class="room" bed="1" fang="1" toy="0" roof="0">
+                                    <img src="img/rooms/preview-room-2.jpg" alt="" class="room__img">
+                                    <div class="room__desc">
+                                        <p class="room__name">Эконом плюс</p>
+                                        <div class="room__stat">
+                                            <p>Размеры (ШхГхВ) - <span>90х100х180</span>см</p>
+                                        </div>
+                                        <div class="room__stat">
+                                            <p>Площадь - <span class="room__stat-size">0,90</span> м<sup>2</sup></p>
+                                        </div>
+                                        <div class="room__boons">
+                                            <span>Оснащение номера</span>
+                                        </div>
+                                        <div class="room__price">
+                                            <p>Цена за сутки: <span class="room__price-value">200</span><span>₽</span></p>
+                                        </div>
+                                        <button class="room__btn button">Забронировать</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 3 -->
+                            <li class="rent__item rent__item_shown">
+                                <div class="room" bed="1" fang="1" toy="1" roof="0">
+                                    <img src="img/rooms/preview-room-3.jpg" alt="" class="room__img">
+                                    <div class="room__desc">
+                                        <p class="room__name">Комфорт</p>
+                                        <div class="room__stat">
+                                            <p>Размеры (ШхГхВ) - <span>100х125х180</span>см</p>
+                                        </div>
+                                        <div class="room__stat">
+                                            <p>Площадь - <span class="room__stat-size">1,13</span> м<sup>2</sup></p>
+                                        </div>
+                                        <div class="room__boons">
+                                            <span>Оснащение номера</span>
+                                        </div>
+                                        <div class="room__price">
+                                            <p>Цена за сутки: <span class="room__price-value">250</span><span>₽</span></p>
+                                        </div>
+                                        <button class="room__btn button">Забронировать</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 4 -->
+                            <li class="rent__item rent__item_shown">
+                                <div class="room" bed="1" fang="1" toy="1" roof="0">
+                                    <img src="img/rooms/preview-room-4.jpg" alt="" class="room__img">
+                                    <div class="room__desc">
+                                        <p class="room__name">Сьют</p>
+                                        <div class="room__stat">
+                                            <p>Размеры (ШхГхВ) - <span>125х125х180</span>см</p>
+                                        </div>
+                                        <div class="room__stat">
+                                            <p>Площадь - <span class="room__stat-size">1,56</span> м<sup>2</sup></p>
+                                        </div>
+                                        <div class="room__boons">
+                                            <span>Оснащение номера</span>
+                                        </div>
+                                        <div class="room__price">
+                                            <p>Цена за сутки: <span class="room__price-value">350</span><span>₽</span></p>
+                                        </div>
+                                        <button class="room__btn button">Забронировать</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 5 -->
+                            <li class="rent__item rent__item_shown">
+                                <div class="room" bed="1" fang="1" toy="1" roof="1">
+                                    <img src="img/rooms/preview-room-5.jpg" alt="" class="room__img">
+                                    <div class="room__desc">
+                                        <p class="room__name">Люкс</p>
+                                        <div class="room__stat">
+                                            <p>Размеры (ШхГхВ) - <span>160х160х180</span>см</p>
+                                        </div>
+                                        <div class="room__stat">
+                                            <p>Площадь - <span class="room__stat-size">2,56</span> м<sup>2</sup></p>
+                                        </div>
+                                        <div class="room__boons">
+                                            <span>Оснащение номера</span>
+                                        </div>
+                                        <div class="room__price">
+                                            <p>Цена за сутки: <span class="room__price-value">500</span><span>₽</span></p>
+                                        </div>
+                                        <button class="room__btn button">Забронировать</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 6 -->
+                            <li class="rent__item rent__item_shown">
+                                <div class="room" bed="1" fang="1" toy="1" roof="1">
+                                    <img src="img/rooms/preview-room-6.jpg" alt="" class="room__img">
+                                    <div class="room__desc">
+                                        <p class="room__name">Супер-Люкс</p>
+                                        <div class="room__stat">
+                                            <p>Размеры (ШхГхВ) - <span>180х160х180</span>см</p>
+                                        </div>
+                                        <div class="room__stat">
+                                            <p>Площадь - <span class="room__stat-size">2,88</span> м<sup>2</sup></p>
+                                        </div>
+                                        <div class="room__boons">
+                                            <span>Оснащение номера</span>
+                                        </div>
+                                        <div class="room__price">
+                                            <p>Цена за сутки: <span class="room__price-value">600</span><span>₽</span></p>
+                                        </div>
+                                        <button class="room__btn button">Забронировать</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+
+        var chekedBoon, b, f, t, r, x, flag = ''
+
+        showFilterError = function(){
+            document.querySelectorAll('.filter__error').forEach(function(e){
+                e.classList.add('filter__error_shown')
+                console.log('ERR: wrong price range!')
+            });
+        }
+        hideFilterError = function(){
+            document.querySelectorAll('.filter__error').forEach(function(e){
+                e.classList.remove('filter__error_shown')
+            });
+        }
+
+        filterHideItem = function(e){
+            e.classList.remove("rent__item_shown");
+        }
+        filterShowAllItems = function(e){
+            e.classList.add("rent__item_shown");
+        }
+
+        filterClearRange = function(){
+            document.getElementById('rangeFrom').value = '';
+            document.getElementById('rangeTo').value = '';
+        }
+        filterClearCheckboxes = function(){
+            document.querySelectorAll('input:checked').forEach(function(e){
+                e.checked = false
+            })
+        }
+
+        const scrollToTop = () => {
+        const c = document.documentElement.scrollTop || document.body.scrollTop;
+            if (c > 0) {
+                window.requestAnimationFrame(scrollToTop);
+                window.scrollTo(0, c - c / 12);
+            }
+        };
+
+
+
+        //create sizes
+        var arr1 = [];
+        var unique = '';
+        document.querySelectorAll('.rent__item').forEach(function(e){
+            e.querySelectorAll('.room__stat-size').forEach(function(g){
+                var arr2 = arr1.push(g.innerHTML)
+                var size = g.innerHTML
+
+                unique = arr1.filter(function(elem, pos) {
+                    return arr1.indexOf(elem) == pos;
+                }); 
+
+            })
+        })                
+        document.querySelectorAll('#sizes').forEach(function(e){
+            for (var i = 0; i < unique.length; i++) {
+                e.innerHTML += '<label><input type="checkbox"><span>'+unique[i]+'</span> м<sup>2</sup></label>'
+            }
+        })
+
+
+        filterSubmit = function(){
+
+            var a = document.getElementById('rangeFrom').value
+            var z = document.getElementById('rangeTo').value
+
+
+            
+            if ( (isNaN(a) || isNaN(z)) || ((a && z == '') || (z && a == '')) ) { // One or more range inputs is empty or has wrong value
+                showFilterError();
+                scrollToTop();
+
+            } else { //Both range inputs have true value or empty
+                document.querySelectorAll('.rent__item').forEach(function(test1){
+                    test1.querySelectorAll('.room__price-value').forEach(function(test2){
+                        var priceValue = test2.innerText;
+                        filterHideItem(test1);
+                        if ( a == '' || z == '' ) {
+                            filterShowAllItems(test1);
+                        } else if ( (priceValue >= parseInt(a)) && (priceValue <= parseInt(z)) ) {
+                            filterShowAllItems(test1);
+                            hideFilterError(); 
+                            document.getElementById('rangeFrom').value = a;
+                            document.getElementById('rangeTo').value = z;
+                        }
+
+                    })
+                })
+
+
+                // Size check
+                var currentSizes = [];
+                document.querySelectorAll('#sizes').forEach(function(e){
+                    e.querySelectorAll('input:checked+span').forEach(function(g){
+                            var arr2 = currentSizes.push(g.innerHTML)
+                    })
+                })
+
+                document.querySelectorAll('.rent__item_shown').forEach(function(e){
+                    e.querySelectorAll('.room__stat-size').forEach(function(g){
+                                               
+
+                        if ( currentSizes.length > 0 ) {
+                            filterHideItem(e);
+                            for (var i = 0; i < currentSizes.length; i++ ) {
+                                if ( g.innerHTML == currentSizes[i] ) {
+                                    filterShowAllItems(e);
+                                }
+                            }
+                        }
+
+                    })
+                })
+
+                // Boons check
+                var checked = '';
+                document.querySelectorAll('#boons').forEach(function(e){
+                    checked = e.querySelectorAll('input:checked').length
+                });
+                console.log(checked)
+                if ( checked > 0 ) {
+                    document.querySelectorAll('.rent__item_shown').forEach(function(test1){
+                    test1.querySelectorAll('.room').forEach(function(g){
+                        var b = g.getAttribute('bed');
+                        var f = g.getAttribute('fang');
+                        var t = g.getAttribute('toy');
+                        var r = g.getAttribute('roof'); 
+
+                        x = b + f + t + r;
+
+                        document.querySelectorAll('.filter__check').forEach(function(e){
+                            e.querySelectorAll('input:checked').forEach(function(j){
+                                chekedBoon = j.getAttribute('name')
+
+                                filterHideItem(test1)
+
+                                if ( chekedBoon == 'clear' && x == 0 ) {
+                                    filterShowAllItems(test1)
+                                } else if ( g.getAttribute(chekedBoon) == 1 ) {
+                                    filterShowAllItems(test1)
+                                }
+                            })
+                        })
+                    })
+                })
+                }
+                
+            }
+        
+            if ( document.querySelectorAll('.rent__item').length > document.querySelectorAll('.rent__item_shown').length ) {
+                document.querySelectorAll('.filter__clear').forEach(function(e){
+                    e.classList.add('filter__clear_shown')
+                })
+            }
+        }
+
+        filterClear = function(){
+            document.querySelectorAll('.rent__item').forEach(function(test3){
+                filterShowAllItems(test3);
+            });
+            filterClearRange()
+            filterClearCheckboxes()
+            hideFilterError()
+            document.querySelectorAll('.filter__clear').forEach(function(e){
+                e.classList.remove('filter__clear_shown')
+            })
+        }
+
+        // Sort
+        function sortList1() {
+
+        var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+        list = document.getElementById("id01");
+        switching = true;
+        dir = "asc"; 
+        while (switching) {
+            switching = false;
+            b = list.getElementsByClassName("rent__item");
+            h = list.getElementsByClassName("room__stat-size");
+            for (i = 0; i < (b.length - 1); i++) {
+            shouldSwitch = false;
+            if (dir == "asc") {
+                if (h[i].innerHTML.toLowerCase() > h[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+                }
+            } else if (dir == "desc") {
+                if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+                }
+            }
+            }
+            if (shouldSwitch) {
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            switchcount ++;
+            } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = false;
+            }
+            }
+        }
+        }
+
+        function sortList2() {
+
+        var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+        list = document.getElementById("id01");
+        switching = true;
+        dir = "desc"; 
+        while (switching) {
+        switching = false;
+        b = list.getElementsByClassName("rent__item");
+        h = list.getElementsByClassName("room__stat-size");
+        for (i = 0; i < (b.length - 1); i++) {
+            shouldSwitch = false;
+            if (dir == "asc") {
+            if (h[i].innerHTML.toLowerCase() > h[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+            }
+            } else if (dir == "desc") {
+            if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+            }
+            }
+        }
+        if (shouldSwitch) {
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            switchcount ++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = false;
+            }
+        }
+        }
+        }
+
+        function sortList3() {
+
+        var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+        list = document.getElementById("id01");
+        switching = true;
+        dir = "asc"; 
+        while (switching) {
+            switching = false;
+            b = list.getElementsByClassName("rent__item");
+            h = list.getElementsByClassName("room__price-value");
+            for (i = 0; i < (b.length - 1); i++) {
+            shouldSwitch = false;
+            if (dir == "asc") {
+                if (h[i].innerHTML.toLowerCase() > h[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+                }
+            } else if (dir == "desc") {
+                if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+                }
+            }
+            }
+            if (shouldSwitch) {
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            switchcount ++;
+            } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = false;
+            }
+            }
+        }
+        }
+
+        function sortList4() {
+
+        var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+        list = document.getElementById("id01");
+        switching = true;
+        dir = "desc"; 
+        while (switching) {
+        switching = false;
+        b = list.getElementsByClassName("rent__item");
+        h = list.getElementsByClassName("room__price-value");
+        for (i = 0; i < (b.length - 1); i++) {
+            shouldSwitch = false;
+            if (dir == "asc") {
+            if (h[i].innerHTML.toLowerCase() > h[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+            }
+            } else if (dir == "desc") {
+            if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+            }
+            }
+        }
+        if (shouldSwitch) {
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            switchcount ++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = false;
+            }
+        }
+        }
+        }
+
+
+
+        openSort = function(){
+            document.querySelectorAll('.sort__list').forEach(function(e){
+                e.classList.add('sort__list_shown');
+            })
+        }
+
+        closeSort = function(){
+            document.querySelectorAll('.sort__list').forEach(function(e){
+                setTimeout(() => {
+                    e.classList.remove('sort__list_shown');
+                }, 10);
+            })
+        }
+
+        sortSizeTop = function(){
+            document.querySelectorAll('.sort__item').forEach(function(e){
+                e.classList.remove('sort__item_current')
+            })
+            sortList1()
+            document.querySelectorAll('#sortSizeBot').forEach(function(g){
+                g.classList.add('sort__item_current')
+                document.querySelectorAll('.sort__current').forEach(function(f){
+                    f.innerHTML = ''+g.innerHTML+''
+                })
+            })
+        }
+        sortSizeBot = function(){
+            document.querySelectorAll('.sort__item').forEach(function(e){
+                e.classList.remove('sort__item_current')
+            })
+            sortList2()
+            document.querySelectorAll('#sortSizeTop').forEach(function(g){
+                g.classList.add('sort__item_current')
+                document.querySelectorAll('.sort__current').forEach(function(f){
+                    f.innerHTML = ''+g.innerHTML+''
+                })
+            })
+        }
+        sortPriceTop = function(){
+            document.querySelectorAll('.sort__item').forEach(function(e){
+                e.classList.remove('sort__item_current')
+            })
+            sortList3()
+            document.querySelectorAll('#sortPriceBot').forEach(function(g){
+                g.classList.add('sort__item_current')
+                document.querySelectorAll('.sort__current').forEach(function(f){
+                    f.innerHTML = ''+g.innerHTML+''
+                })
+            })
+        }
+        sortPriceBot = function(){
+            document.querySelectorAll('.sort__item').forEach(function(e){
+                e.classList.remove('sort__item_current')
+            })
+            sortList4()
+            document.querySelectorAll('#sortPriceTop').forEach(function(g){
+                g.classList.add('sort__item_current')
+                document.querySelectorAll('.sort__current').forEach(function(f){
+                    f.innerHTML = ''+g.innerHTML+''
+                })
+            })
+        }
+
+        openMobileMenu = function(){
+            if ( flag == 0 ) {
+                document.querySelectorAll('.mobile-menu').forEach(function(e){
+                    e.classList.add('mobile-menu_active')
+                })
+                document.querySelectorAll('.hamburger').forEach(function(f){
+                    f.classList.add('hamburger_active')
+                })
+                flag = 1
+            } else {
+                document.querySelectorAll('.mobile-menu').forEach(function(e){
+                    e.classList.remove('mobile-menu_active')
+                })
+                document.querySelectorAll('.hamburger').forEach(function(f){
+                    f.classList.remove('hamburger_active')
+                })
+                flag = 0
+            }
+
+        }
+
+
+        
+    </script>
+
+</body>
+</html>

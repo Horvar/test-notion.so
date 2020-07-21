@@ -1,0 +1,72 @@
+.rent {}
+
+.rent__container {}
+
+.rent__title {
+    margin-bottom: 75px;
+    @media (max-width: 768px) {
+        margin-bottom: 40px;
+    }
+}
+
+.rent__content {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.rent__filter {
+    margin-right: 30px;
+    max-width: 185px;
+    @media (max-width: 768px) {
+        max-width: 100%;
+        margin-right: 0;
+    }
+}
+
+.rent__rooms {
+    max-width: 75%;
+    flex: 0 0 75%;
+    position: relative;
+    @media (max-width: 768px) {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+}
+
+.rent__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+    @media (max-width: 1200px) {
+        column-gap: 15px;   
+    }
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 30px;   
+    }
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 15px;   
+    }
+    @media (max-width: 540px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.rent__item {
+    display: none;
+    &_shown {
+        display: block;
+    }
+}
+
+.rent__sort {
+    position: absolute!important;
+    right: 0;
+    top: -10px;
+    transform: translateY(-100%);
+}

@@ -1,0 +1,33 @@
+.container {
+    @media (min-width: 1140px) {
+        max-width: 1200px;
+    }
+    @media (min-width: 992px) {
+        max-width: 1200px;
+    }
+    @media (min-width: 768px) {
+        max-width: 1200px;
+    }
+    @media (min-width: 576px) {
+        max-width: 1200px;
+    }
+}
+
+.h1 {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 43px;
+}
+
+.button {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    padding: 0;
+    padding-top: 12px;
+    padding-bottom: 13px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    outline: none!important;
+}
